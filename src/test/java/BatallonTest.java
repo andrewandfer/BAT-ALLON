@@ -45,10 +45,10 @@ class BatallonTest {
     public void testLiberarSoldado() {
         LOG.info("iniciando prueba testLiberarSoldado");
 
-        Batallon batalonTest = new Batallon("1234","Octavo Brigada");
-        Mision misionTest = new Mision("345",LocalDate.of(2024,03,12), "Armenia");
+        Batallon batalonTest = new Batallon("1234", "Octavo Brigada");
+        Mision misionTest = new Mision("345", LocalDate.of(2024, 03, 12), "Armenia");
 
-        LinkedList <Soldado>  listpersonal = new LinkedList<>();
+        LinkedList<Soldado> listpersonal = new LinkedList<>();
         Soldado soldado1 = new Soldado("ID001", "RAMIRO", Rango.SOLDADO, Funcion.MEDICO, 25, EstadoSoldado.NO_DISPONIBLE);
         Soldado soldado2 = new Soldado("ID002", "JOSE LUIS", Rango.SARGENTO, Funcion.LOGISTICA, 30, EstadoSoldado.NO_DISPONIBLE);
         Soldado soldado3 = new Soldado("ID003", "ANDREA GUZMAN", Rango.SARGENTO, Funcion.MEDICO, 28, EstadoSoldado.NO_DISPONIBLE);
@@ -176,7 +176,44 @@ class BatallonTest {
         LOG.info("finalizando prueba testBuscarIdSoldado");
 
 
+    }
 
+    @Test
+    public void probarObtenerSoldadosPorFuncion() {
+        Batallon batallon = new Batallon("01", "aguila");
+
+        // Agrega todos los soldados (como en tu código original)
+        batallon.getListaSoldados().add(new Soldado("01","jose",Rango.CABO,Funcion.LOGISTICA, 20, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("02", "Ana", Rango.CABO, Funcion.MEDICO, 25, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("03", "Lucas", Rango.CABO, Funcion.COMUNICACIONES, 22, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("04", "María", Rango.SOLDADO, Funcion.LOGISTICA, 28, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("05", "Pedro", Rango.SARGENTO, Funcion.MEDICO, 21, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("06", "Camila", Rango.CABO, Funcion.LOGISTICA, 23, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("07", "David", Rango.SOLDADO, Funcion.COMUNICACIONES, 30, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("08", "Sofía", Rango.SARGENTO, Funcion.MEDICO, 24, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("09", "Mateo", Rango.CABO, Funcion.COMUNICACIONES, 20, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("10", "Laura", Rango.SOLDADO, Funcion.MEDICO, 27, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("11", "Juan", Rango.CABO, Funcion.LOGISTICA, 26, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("12", "Valentina", Rango.SARGENTO, Funcion.LOGISTICA, 29, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("13", "Tomás", Rango.CABO, Funcion.MEDICO, 25, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("14", "Martina", Rango.SARGENTO, Funcion.LOGISTICA, 22, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("15", "Nicolás", Rango.SARGENTO, Funcion.COMUNICACIONES, 23, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("16", "Carla", Rango.CABO, Funcion.MEDICO, 28, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("17", "Gabriel", Rango.SARGENTO, Funcion.MEDICO, 24, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("18", "Florencia", Rango.SARGENTO, Funcion.LOGISTICA, 31, EstadoSoldado.NO_DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("19", "Sebastián", Rango.CABO, Funcion.COMUNICACIONES, 21, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("20", "Jazmín", Rango.SARGENTO, Funcion.MEDICO, 26, EstadoSoldado.DISPONIBLE));
+        batallon.getListaSoldados().add(new Soldado("21", "Agustín", Rango.SARGENTO, Funcion.LOGISTICA, 27, EstadoSoldado.DISPONIBLE));
+
+        // Pruebas por función
+        LinkedList<Soldado> medicos = batallon.obtenerSoldadosPorFuncion(Funcion.MEDICO);
+        LinkedList<Soldado> logistica = batallon.obtenerSoldadosPorFuncion(Funcion.LOGISTICA);
+        LinkedList<Soldado> comunicaciones = batallon.obtenerSoldadosPorFuncion(Funcion.COMUNICACIONES);
+
+        // Verifica las cantidades
+        assertEquals(3, medicos.size());
+        assertEquals(3, logistica.size());
+        assertEquals(4, comunicaciones.size());
     }
 
 
